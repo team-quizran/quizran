@@ -1,0 +1,43 @@
+<% include 'helpers/common' %>
+<% extend 'layouts/layout.ect' %>
+<% include 'partials/header_notlogin.ect' %>
+
+<div class="contents">
+  <main class="content-main">
+    <img src="/images/top_eyecatch.png" class="p-top__eyecatch" alt="GETIGER">
+    <% if @message : %>
+      <p><%- @message %></p>
+    <% end %>
+    <% if @error && @error.length : %>
+      <p><%- @error[0] %></p>
+    <% end %>
+    <form class="c-form p-top__login-form" action="/login" method="post">
+      <input type="hidden" name="_csrf" value="<%- @csrfToken %>">
+      <div class="c-form__group">
+        <label class="c-form__label">
+          ログインID
+        </label>
+        <input type="text" class="c-input" name="username" placeholder="ログインID" maxlength="50" pattern="^([a-zA-Z0-9]{6,})$" title="6文字以上のa～z、A～Z、0～9 の英数字と_-で入力してください。" required>
+      </div>
+      <div class="c-form__group">
+        <label class="c-form__label">
+          パスワード
+        </label>
+        <input type="password" class="c-input" name="password" placeholder="パスワード" maxlength="100" pattern="^([a-zA-Z0-9]{8,})$" title="8文字以上のa～z、A～Z、0～9 の英数字と_-で入力してください。" required>
+      </div>
+      <div class="c-form__group--bottom">
+        <button type="submit" class="c-btn c-btn--block c-btn--primary">
+          ログイン
+        </button>
+      </div>
+    </form>
+    <a href="/register" class="c-btn c-btn--block c-btn--important">
+      → アカウント登録はこちら
+    </a>
+  </main><!--/content-main-->
+  <% include 'partials/about_heading.ect' %>
+  <% include 'partials/machiad.ect' %>
+</div><!--/contents-->
+<% block 'script' : %>
+  <%- @renderInlineScript() %>
+<% end %>

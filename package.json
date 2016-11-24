@@ -1,0 +1,37 @@
+{
+  "name": "quizran",
+  "version": "0.3.2",
+  "private": true,
+  "engines": {
+    "node": "4.6.1"
+  },
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "bookshelf": "^0.10.2",
+    "checkit": "^0.6.0",
+    "compression": "^1.6.2",
+    "config": "^1.24.0",
+    "connect-flash": "^0.1.1",
+    "connect-redis": "^3.1.0",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
+    "debug": "^2.2.0",
+    "ect": "^0.5.9",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "helmet": "^3.1.0",
+    "knex": "^0.12.6",
+    "lodash": "^4.16.6",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pg": "^6.1.0",
+    "serve-favicon": "^2.3.0",
+    "winston": "^2.3.0"
+  }
+}

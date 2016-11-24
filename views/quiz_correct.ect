@@ -1,0 +1,53 @@
+<% include 'helpers/common' %>
+<% include 'helpers/quiz' %>
+<% @title = 'クイズ - 正解｜' %>
+<% extend 'layouts/layout.ect' %>
+<% include 'partials/header.ect' %>
+
+<div class="contents">
+  <main class="content-main">
+    <div class="p-quiz__result">
+      <div class="p-quiz__level <%- @levelClass(@quiz.level) %>">
+        難易度
+        <span class="p-quiz__level__star">★</span>
+        <span class="p-quiz__level__star">★</span>
+        <span class="p-quiz__level__star">★</span>
+      </div>
+      <div class="p-quiz__result__head">
+        <span class="p-quiz__result__head__sign is_correct">
+          ◎
+        </span>
+        <span class="p-quiz__result__head__str">
+          正解
+        </span>
+      </div>
+      <div class="p-quiz__result__point">
+        <span class="p-quiz__result__point__num">
+          <%- @point %>
+        </span>
+        ポイントGET!
+      </div>
+      <% if @quiz?.description: %>
+        <div class="p-quiz__result__desc">
+          <%= @quiz.description %>
+          <% if @quiz.ref_url : %>
+            <p>参考:<a href="<%= @quiz.ref_url %>"><%= @quiz.ref_url %></a></p>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="p-quiz__result__btns">
+        <a href="/quiz" class="c-btn c-btn--block c-btn--lg c-btn--primary">
+          → もう一回！
+        </a>
+        <a href="/gacha" class="c-btn c-btn--block c-btn--lg c-btn--important">
+          → ガチャを引く
+        </a>
+        <a href="/" class="c-btn c-btn--block">
+          → トップに戻る
+        </a>
+      </div>
+    </div>
+  </main><!--/content-main-->
+</div><!--/contents-->
+<% block 'script' : %>
+<% end %>

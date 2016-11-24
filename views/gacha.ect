@@ -1,0 +1,61 @@
+<% include 'helpers/common' %>
+<% include 'helpers/gacha' %>
+<% @title = 'ガチャ｜' %>
+<% extend 'layouts/layout.ect' %>
+<% include 'partials/header.ect' %>
+
+<div class="contents">
+  <main class="content-main">
+    <h2 class="content-main__title">
+      ガチャ
+    </h2>
+    <ul class="p-gacha__list">
+      <li class="p-gacha__list__item <%- @renderDisabled(@gachaInfo.free) %>">
+        <form action="/gacha/daily" method="post">
+          <input type="hidden" name="_csrf" value="<%- @csrfToken %>">
+          <button type="submit" <%- @renderDisabled(@gachaInfo.free) %>>
+            <img src="/images/icon_gacha.png" class="p-gacha__list__img">
+            <span class="p-gacha__list__type">
+              一日一回まで
+            </span>
+            <h3 class="p-gacha__list__name">
+              無料<br>ガチャ
+            </h3>
+          </button>
+        </form>
+        <div class="p-gacha__list__desc">
+          <p>
+            このガチャは
+            <strong>ポイントを使わずに</strong>
+            引けます！
+            <small>(一日一回のみ)</small>
+          </p>
+        </div>
+      </li>
+      <li class="p-gacha__list__item <%- @renderDisabled(@gachaInfo.point) %>">
+        <form action="/gacha/point" method="post">
+          <input type="hidden" name="_csrf" value="<%- @csrfToken %>">
+          <button type="submit" <%- @renderDisabled(@gachaInfo.point) %>>
+            <img src="/images/icon_gacha.png" class="p-gacha__list__img">
+            <span class="p-gacha__list__type is_limitless">
+              無制限！
+            </span>
+            <h3 class="p-gacha__list__name">
+              通常<br>ガチャ
+            </h3>
+          </button>
+        </form>
+        <div class="p-gacha__list__desc">
+          <p>
+            このガチャは
+            <strong><%- @gachaInfo.usePoint %>p消費</strong>
+            します！
+          </p>
+        </div>
+      </li>
+    </ul>
+  </main><!--/content-main-->
+</div><!--/contents-->
+<% block 'script' : %>
+  <%- @renderInlineScript() %>
+<% end %>

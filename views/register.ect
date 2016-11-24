@@ -1,0 +1,49 @@
+<% include 'helpers/common' %>
+<% @title = 'アカウント登録｜' %>
+<% extend 'layouts/layout.ect' %>
+<% include 'partials/header_notlogin.ect' %>
+
+<div class="contents">
+  <main class="content-main">
+    <h2 class="content-main__title">
+      アカウント登録
+    </h2>
+    <form class="c-form" action="/register" method="post">
+      <% if @error && @error.length : %>
+        <% for key in Object.keys(@error[0]): %>
+          <p><%- @error[0][key][0] %></p>
+        <% end %>
+      <% end %>
+      <input type="hidden" name="_csrf" value="<%- @csrfToken %>">
+      <div class="c-form__group">
+        <label class="c-form__label">
+          名前
+        </label>
+        <input type="text" class="c-input"  name="name" placeholder="名前" maxlength="20" required>
+      </div>
+      <div class="c-form__group">
+        <label class="c-form__label">
+          ログインID
+        </label>
+        <input type="text" class="c-input" name="username" placeholder="ログインID" maxlength="50" pattern="^([a-zA-Z0-9]{6,})$" title="6文字以上のa～z、A～Z、0～9 の英数字と_-で入力してください。" required>
+      </div>
+      <div class="c-form__group">
+        <label class="c-form__label">
+          パスワード
+        </label>
+        <input type="password" class="c-input" name="password" placeholder="パスワード" maxlength="100" pattern="^([a-zA-Z0-9]{8,})$" title="8文字以上のa～z、A～Z、0～9 の英数字と_-で入力してください。" required>
+      </div>
+      <div class="c-form__group--bottom">
+        <button type="submit" class="c-btn c-btn--lg c-btn--block c-btn--primary">
+          アカウント登録
+        </button>
+      </div>
+    </form>
+    <a href="/login" class="c-btn c-btn--block">
+      戻る
+    </a>
+  </main><!--/content-main-->
+</div><!--/contents-->
+<% block 'script' : %>
+  <%- @renderInlineScript() %>
+<% end %>

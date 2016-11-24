@@ -1,0 +1,15 @@
+<% include 'helpers/collection' %>
+<% @title = 'コレクション｜' %>
+<% extend 'layouts/layout.ect' %>
+<% include 'partials/header.ect' %>
+
+<div class="contents">
+  <main class="content-main">
+    <h2 class="content-main__title">
+        コレクション
+    </h2>
+    <%- @renderCollection(@items) %>
+  </main><!--/content-main-->
+</div><!--/contents-->
+<% block 'script' : %>
+<% end %>

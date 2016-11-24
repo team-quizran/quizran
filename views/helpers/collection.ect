@@ -1,0 +1,89 @@
+<% _ = require('lodash') %>
+<% include 'helpers/common' %>
+
+<% COLLECTION_ITEM_COLUMNS = 2 %>
+
+<% @renderCollection = (items) -> %>
+  <% for rarity in _.chain(@items).keys().sortBy().value(): %>
+    <table class="p-collection__table">
+      <%- @renderCaption(@items[rarity], rarity, @items[rarity].available_item_count) %>
+      <%- @renderTbody(@items[rarity], COLLECTION_ITEM_COLUMNS, @items[rarity].available_item_count) %>
+    </table>
+  <% end %>
+<% end %>
+
+<% @renderCaption = (items, rarity, availableItemCount) -> %>
+  <caption>
+    <%- if @isRare(parseInt(rarity, 10)) then 'レアアイテム' else '通常アイテム' %>
+    <span class="p-collection__table__count">
+      <span class="p-collection__table__count__num">
+        <%- if items then items.complete_count else 0 %>
+      </span>
+      /
+      <%- availableItemCount %>
+    </span>
+  </caption>
+<% end %>
+
+<% @renderTbody = (items, cloumnSize, availableItemCount) -> %>
+  <tbody>
+    <% for count in [1..availableItemCount]: %>
+      <%- '<tr>' if count % cloumnSize  == 1 %>
+      <td>
+        <span class="p-collection__item__number">
+          No. <%- count %>
+        </span>
+      <% if items && items[count] && items[count].pieces: %>
+        <% # 揃っていない（ピースがある） %>
+        <% item = items[count]; %>
+        <div class="p-collection__item">
+            <table class="p-collection__item__pieces">
+                <tbody>
+                    <% index = 0; %>
+                    <% for row in [1..item.puzzle_rows]: %>
+                      <tr>
+                      <% for column in [1..item.puzzle_columns]: %>
+                        <% index = index + 1; %>
+                        <% if item.pieces[index]: %>
+                          <% # ピースがある %>
+                          <% piece = item.pieces[index] %>
+                          <td>
+                            <span class="p-collection__item__img">
+                              <img src="<%- piece.image_url %>" alt="<%- piece.name %>">
+                            </span>
+                          </td>
+                        <% else: %>
+                          <% # ピースがない %>
+                          <td>
+                            <span class="p-collection__item--empty">
+                              <%- index %>
+                            </span>
+                          </td>
+                        <% end %>
+                      <% end %>
+                      </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <span class="p-collection__item__name">？？？</span>
+        </div>
+      <% else if items && items[count]: %>
+        <% # 揃っている %>
+        <% item = items[count]; %>
+        <a href='<%- "/collection/#{item.short_id}" %>' class="p-collection__item">
+            <span class="p-collection__item__img">
+              <img src='<%- item.image_url %>' alt="<%- item.name %>">
+            </span>
+            <span class="p-collection__item__name"><%- item.name %></span>
+        </a>
+      <% else: %>
+        <% # 揃っていない（ピースがない） %>
+        <span class="p-collection__item--empty">
+            ？
+        </span>
+      <% end %>
+      </td>
+    <%- '</tr>' if count % cloumnSize == 0 %>
+    <% end %>
+  </tbody>
+<% end %>

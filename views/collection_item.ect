@@ -1,0 +1,53 @@
+<% include 'helpers/common' %>
+<% @title = 'コレクション｜' %>
+<% extend 'layouts/layout.ect' %>
+<% include 'partials/header.ect' %>
+
+<div class="contents">
+  <main class="content-main">
+    <h2 class="content-main__title">
+      コレクション
+    </h2>
+    <div class="p-collection__detail">
+      <h2 class="p-collection__detail__name">
+        <% if @isRare(@item.rarity): %>
+          <p class="p-collection__detail__status">
+            <span class="p-collection__detail__status__text is_rare">
+              レア
+            </span>
+          </p>
+        <% end %>
+        <%= @item?.name %>
+      </h2>
+      <p class="p-collection__detail__img">
+        <img src="<%- @item?.image_url %>" alt="<%= @item.name %>">
+        <% if @item.ref_image : %>
+          <% if @item.ref_image_title : %>
+            <% ref_image_title = "画像：#{@item.ref_image_title}" %>
+          <% else %>
+            <% ref_image_title = '画像参照元' %>
+          <% end %>
+          <a href="<%= @item.ref_image %>"><%= ref_image_title %></a>
+        <% end %>
+      </p>
+      <div class="p-collection__detail__summary">
+        <%= @item?.description %>
+      </div>
+      <% if @item.ref_url : %>
+        <a href="<%= @item.ref_url %>" class="c-btn c-btn--block c-btn--lg c-btn--primary">
+          Webサイトを確認する
+        </a>
+      <% end %>
+      <% if @item?.map_url : %>
+        <a href="<%= @item?.map_url %>" class="c-btn c-btn--block c-btn--lg c-btn--important">
+          場所を確認する
+        </a>
+      <% end %>
+    </div>
+    <a href="/collection" class="c-btn c-btn--block">
+      戻る
+    </a>
+  </main><!--/content-main-->
+</div><!--/contents-->
+<% block 'script' : %>
+<% end %>

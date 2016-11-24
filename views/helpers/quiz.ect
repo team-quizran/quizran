@@ -1,0 +1,10 @@
+<% _ = require('lodash') %>
+
+<% @levelClass = (level) -> %>
+  <% level_classes = ['', 'is_easy', 'is_normal', 'is_hard'] %>
+  <%- level_classes[level] %>
+<% end %>
+
+<% @sortRandomChoices = (choices) -> %>
+  <% return _.shuffle(choices) %>
+<% end %>

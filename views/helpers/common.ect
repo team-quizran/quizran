@@ -1,0 +1,14 @@
+<% settings = require('../../../config/settings') %>
+<% RARE = settings.rarities.rare %>
+
+<% @isRare = (rarity) -> %>
+  <% if rarity == RARE then return true else return false %>
+<% end %>
+
+<% @renderInlineScript = (text) -> %>
+  <script>
+    $('form').on('submit', function() {
+      $(this).find('button:submit').prop('disabled', true);
+    });
+  </script>
+<% end %>

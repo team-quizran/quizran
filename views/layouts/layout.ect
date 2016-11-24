@@ -1,0 +1,28 @@
+<% include 'helpers/ga' %>
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+      <meta charset="UTF-8">
+      <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+      <![endif]-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="室蘭クイズ">
+      <meta name="keywords" content="くじらん, クイズ">
+      <meta name="author" content="HARP">
+      <title><%- @title %>QUIZRAN</title>
+      <link rel="stylesheet" href="/stylesheets/common.css" media='all'>
+      <!--
+        <meta name="mobile-web-app-capable" content="yes">
+      -->
+  </head>
+  <body id="index">
+    <div class="container"><% content %></div>
+
+    <script src="/javascripts/lib/jquery.min.js"></script>
+    <script src="/javascripts/common.js"></script>
+    <% content 'script' %>
+    <%- @renderGA() %>
+  </body>
+</html>
