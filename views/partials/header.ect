@@ -1,0 +1,45 @@
+<header class="header" id="page-top">
+  <div class="header__info">
+    <div class="header__info__point">
+      <span class="header__info__point__num"><%- @user?.point %></span>
+      P
+    </div>
+    <a class="p-login-menu__toggle" href="#loginMenu" data-toggle="collapse" aria-expanded="false" aria-controls="loginMenu">
+      ●
+    </a>
+    <nav id="loginMenu" class="p-login-menu__content collapsed">
+      <p class="p-login-menu__content__name"><%= @user?.display_name %>さん</p>
+      <a href="/logout" class="p-login-menu__content__link">ログアウト</a>
+    </nav>
+  </div>
+  <a class="header__btn p-grobal-nav__toggle" href="#globalNav" data-toggle="drawer" aria-expanded="false" aria-controls="globalNav">
+    三
+  </a>
+  <h1 class="header__title">
+    <a href="/"><img src="/images/logo_small.png" class="header__title__img" alt="QUIZRAN"></a>
+  </h1>
+</header>
+<div id="globalNav" class="global-nav closed">
+  <ul class="global-nav__list">
+    <li class="global-nav__list__child">
+      <a href="/" class="global-nav__list__target">
+        ▶ トップページ
+      </a>
+    </li><li class="global-nav__list__child">
+      <a href="/quiz" class="global-nav__list__target">
+        ▶ クイズ
+      </a>
+    </li><li class="global-nav__list__child">
+      <a href="/gacha" class="global-nav__list__target">
+        ▶ ガチャ
+      </a>
+    </li><li class="global-nav__list__child">
+      <a href="/collection" class="global-nav__list__target">
+        ▶ コレクション
+      </a>
+    </li>
+  </ul>
+  <a href="#globalNav" class="global-nav__close-btn" data-toggle="drawer" aria-expanded="false" aria-controls="globalNav">
+    × 閉じる
+  </a>
+</div>

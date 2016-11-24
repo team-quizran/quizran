@@ -1,0 +1,41 @@
+<% include 'helpers/common' %>
+<% @title = 'ガチャ｜' %>
+<% extend 'layouts/layout.ect' %>
+<% include 'partials/header.ect' %>
+
+<div class="contents">
+  <main class="content-main">
+    <div class="p-gacha__gacha">
+      <img src="/images/icon_gacha.png" class="p-gacha__gachaimg">
+    </div>
+    <div class="p-gacha__result">
+      <h2 class="p-gacha__result__name">
+        <% if @isRare(@item.rarity): %>
+          <p class="p-gacha__result__status">
+            <span class="p-gacha__result__status__text is_rare">
+              レア
+            </span>
+          </p>
+        <% end %>
+        <%- "No.#{@item.item_sort_key}　？？？" %>
+        <% if @item.new : %>
+          <span class="new"></span>
+        <% end %>
+      </h2>
+      <div class="p-gacha__result__summary">
+        <p class="p-gacha__result__img">
+          <img src="<%- @item?.image_url %>" alt="?">
+        </p>
+      </div>
+      <h3 class="p-gacha__result__name"><%- "ピース#{@item.sort_key}" %></h3>
+      <a href="/gacha" class="c-btn c-btn--block c-btn--lg c-btn--important">
+        ガチャを引く
+      </a>
+      <a href="/collection/" class="c-btn c-btn--block c-btn--lg c-btn--primary">
+        コレクション
+      </a>
+    </div>
+  </main><!--/content-main-->
+</div><!--/contents-->
+<% block 'script' : %>
+<% end %>

@@ -1,0 +1,48 @@
+<% include 'helpers/quiz' %>
+<% @title = 'クイズ｜' %>
+<% extend 'layouts/layout.ect' %>
+<% include 'partials/header.ect' %>
+
+<div class="contents">
+  <main class="content-main">
+    <div class="p-quiz__content">
+      <div class="p-quiz__level <%- @levelClass(@quiz.level) %>">
+        難易度
+        <span class="p-quiz__level__star">★</span>
+        <span class="p-quiz__level__star">★</span>
+        <span class="p-quiz__level__star">★</span>
+      </div>
+      <p class="p-quiz__question">
+        <span class="p-quiz__question__sign">Q.</span><%= @quiz.sentence %>
+      </p>
+      <form class="p-quiz__select-answers" action="/quiz/answer" method="post">
+        <input type="hidden" name="_csrf" value="<%- @csrfToken %>">
+        <% index = 1; %>
+        <% for key in @sortRandomChoices(Object.keys(@quiz.choices)): %>
+          <button class="p-quiz__select-answers__item" type="submit" name="choice" value="<%= key %>">
+            <span class="p-quiz__select-answers__item__num">
+              <%- index %>.
+            </span>
+            <%= @quiz.choices[key] %>
+          </button>
+          <% index = index + 1; %>
+        <% end %>
+      </form>
+    </div>
+    <div class="p-quiz__notice-box">
+      <p class="p-quiz__notice-box__count">
+        START！
+      </p>
+    </div>
+  </main><!--/content-main-->
+</div><!--/contents-->
+<% block 'script' : %>
+  <script>
+    $('form').on('submit', function() {
+      if ($(this).data('submitted')) {
+        return false;
+      }
+      $(this).data('submitted', true);
+    });
+  </script>
+<% end %>

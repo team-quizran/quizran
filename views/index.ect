@@ -1,0 +1,26 @@
+<% extend 'layouts/layout.ect' %>
+<% include 'partials/header.ect' %>
+
+<div class="contents">
+  <main class="content-main">
+    <img src="/images/top_eyecatch.png" class="p-top__eyecatch" alt="GETIGER">
+    <nav class="p-top__main-nav">
+      <a href="/quiz" class="p-top__main-nav__item--quiz">
+        <img src="/images/icon_quiz.png" class="p-top__main-nav__item__img">
+        <span class="p-top__main-nav__item__name">クイズSTART！</span>
+      </a>
+      <a href="/gacha" class="p-top__main-nav__item--gacha">
+        <img src="/images/icon_gacha.png" class="p-top__main-nav__item__img">
+        <span class="p-top__main-nav__item__name">ガチャを引く</span>
+      </a>
+      <a href="/collection" class="p-top__main-nav__item--collection">
+        <img src="/images/icon_collection.png" class="p-top__main-nav__item__img">
+        <span class="p-top__main-nav__item__name">コレクションをみる</span>
+      </a>
+    </nav>
+  </main><!--/content-main-->
+  <% include 'partials/about_heading.ect' %>
+  <% include 'partials/machiad.ect' %>
+</div><!--/contents-->
+<% block 'script' : %>
+<% end %>

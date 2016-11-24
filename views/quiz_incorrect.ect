@@ -1,0 +1,35 @@
+<% include 'helpers/quiz' %>
+<% @title = 'クイズ - 不正解｜' %>
+<% extend 'layouts/layout.ect' %>
+<% include 'partials/header.ect' %>
+
+<div class="contents">
+  <main class="content-main">
+    <div class="p-quiz__result">
+      <div class="p-quiz__level <%- @levelClass(@quiz.level) %>">
+        難易度
+        <span class="p-quiz__level__star">★</span>
+        <span class="p-quiz__level__star">★</span>
+        <span class="p-quiz__level__star">★</span>
+      </div>
+      <div class="p-quiz__result__head">
+        <span class="p-quiz__result__head__sign">
+          ×
+        </span>
+        <span class="p-quiz__result__head__str">
+          不正解
+        </span>
+      </div>
+      <div class="p-quiz__result__btns">
+        <a href="/quiz" class="c-btn c-btn--block c-btn--lg c-btn--primary">
+          → もう一回！
+        </a>
+        <a href="/" class="c-btn c-btn--block">
+          → トップに戻る
+        </a>
+      </div>
+    </div>
+  </main><!--/content-main-->
+</div><!--/contents-->
+<% block 'script' : %>
+<% end %>
